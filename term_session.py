@@ -38,10 +38,10 @@ class ShellSession:
         RESET = '\033[0m'
         """Read and print all lines from stdout and stderr queues."""
         while not self.stdout_queue.empty():
-            print(f"{self.stdout_queue.get()}")
+            print(f"{self.stdout_queue.get()}\n")
 
         while not self.stderr_queue.empty():
-            print(f"{RED}{self.stderr_queue.get()}{RESET}")
+            print(f"{RED}{self.stderr_queue.get()}{RESET}\n")
 
     def run(self):
         print("🔧 Terminal session started. Type 'exit' to quit.\n")
