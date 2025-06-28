@@ -1,6 +1,8 @@
 from session.subprocess_session import SubprocessSession
 
 def run_command(shell: SubprocessSession, command: str) -> dict:
+    shell.flush_stdout()
+    shell.flush_stderr()
     print(f"[DEBUG] ➜ Executing command: {command}")
     exit_code = shell.write_stdin(command)
     print(f"[DEBUG] ↩ Exit code: {exit_code}")
@@ -10,7 +12,6 @@ def run_command(shell: SubprocessSession, command: str) -> dict:
     print(f"[DEBUG] STDERR:\n{stderr}")
     shell.flush_stdout()
     shell.flush_stderr()
-
     return {
         "exit_code": exit_code,
         "stdout": stdout,

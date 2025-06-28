@@ -1,6 +1,8 @@
 from session.subprocess_session import SubprocessSession
 
 def get_current_directory(shell: SubprocessSession) -> str:
+    shell.flush_stdout()
+    shell.flush_stderr()
     exit_code = shell.write_stdin("pwd")
     stdout = shell.read_stdout().strip()
     stderr = shell.read_stderr().strip()
